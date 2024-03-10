@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx-sts
+  namespace: myapp
+spec:
+  selector:
+    matchLabels:
+      app: nginx-sts
+  serviceName: "nginx-sts"
+  replicas: 1
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: nginx-sts
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: nginx-sts
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "cstor"
+      resources:
+        requests:
+          storage: 4Gi
