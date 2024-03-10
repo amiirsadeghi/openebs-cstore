@@ -1,1 +1,22 @@
-
+install and configure openebs-cstor step by step for managing storage in k8s
+---------------------------------------------------------------------------------------
+step 1
+add helm repo cstore and update
+helm repo add openebs https://openebs.github.io/charts
+helm repo update
+---------------------------------------------------------------------------------------
+step 2
+this command install openebs-cstor in namespace openebs 
+helm install openebs -n openebs openebs/openebs --create-namespace
+---------------------------------------------------------------------------------------
+step 3
+add many storage to nodes in this example we add a storage to node2 and add another storage to node 3
+in master node with below command you can see all block device
+kubectl get bd -n openebs
+---------------------------------------------------------------------------------------
+step 4
+create storage pool
+apply manifest cstorpool.yaml
+in this manifest we use strip, you can add more storage and use mirror type
+replace all node name and blockdevice name with your own data
+---------------------------------------------------------------------------------------
