@@ -19,4 +19,11 @@ create storage pool
 apply manifest cstorpool.yaml
 in this manifest we use strip, you can add more storage and use mirror type
 replace all node name and blockdevice name with your own data
+after this step, your storagepool is ready and you can see it with below commnad
+kubectl get cstorpoolclusters.cstor.openebs.io -n openebs
 ---------------------------------------------------------------------------------------
+step 5
+create storage class
+apply manifest storageclass.yaml 
+after this step, your storageclass is ready and you can see it with below commnad
+kubectl get sc -n openebs
