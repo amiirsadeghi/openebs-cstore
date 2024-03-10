@@ -27,3 +27,12 @@ create storage class
 apply manifest storageclass.yaml 
 after this step, your storageclass is ready and you can see it with below commnad
 kubectl get sc -n openebs
+---------------------------------------------------------------------------------------
+step 6
+create statefulset and in volumeClaimTemplates (PVC) request storage 
+apply manifest statefulset.yaml
+after this manifest provisioner will create 4 gig pv, because a pvc created
+with below command yoy can see all pvc and pv
+kubectl get pvc -A
+kubectl get pv -A
+---------------------------------------------------------------------------------------
